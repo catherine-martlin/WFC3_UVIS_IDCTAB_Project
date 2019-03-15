@@ -96,7 +96,6 @@ def read_in_angle_stat(path, path_to_angle, extension):
     global EPS
 
     # Read in all the angle.stat info and match to the unique name.
-    print extension
     if extension == 1:
         with open(angle_file, 'r') as angle_stats_1:
             for line in angle_stats_1:
@@ -148,7 +147,6 @@ def troll_main(filename_list, outfile_date, extension, path_to_data,path_to_coef
             path = path.rstrip()
             # Get the orientat_calc and EPS from the angle.stat:
             path_to_angle = path_to_coeffs
-            print path
             #path_to_angle = '/grp/hst/wfc3o/martlin/idctab_vera/make_idctab_codes/'
             orientat_calc, EPS = read_in_angle_stat(path, path_to_angle, extension)
 
