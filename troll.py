@@ -107,7 +107,7 @@ def read_in_angle_stat(path, path_to_angle, extension):
                 orientat_calc_list.append(curr_orientat)
                 EPS_list.append(curr_EPS)
 
-            for x in xrange(len(name_list)):
+            for x in range(len(name_list)):
                 if name_list[x] == current_I :
                     orientat_calc = orientat_calc_list[x]
                     EPS = EPS_list[x]
@@ -123,7 +123,7 @@ def read_in_angle_stat(path, path_to_angle, extension):
                 orientat_calc_list.append(curr_orientat)
                 EPS_list.append(curr_EPS)
 
-            for x in xrange(len(name_list)):
+            for x in range(len(name_list)):
                 if name_list[x] == current_I :
                     orientat_calc = orientat_calc_list[x]
                     EPS = EPS_list[x]
@@ -139,7 +139,7 @@ def troll_main(filename_list, outfile_date, extension, path_to_data,path_to_coef
     The main controller/conversion tool.
     '''
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
     with open(filename_list, 'r') as f:

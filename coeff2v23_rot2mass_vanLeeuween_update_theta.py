@@ -90,7 +90,7 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
     The main controller/conversion tool.
     '''
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
     print ("  ")
@@ -117,18 +117,19 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
     sin_que = math.sin(que_rad)
 
     # Back to solving:
-    coeff_nums = range(0,15)
+    coeff_nums = range(0,14)
 
     ay = []
     ax = []
     for i in troll_output['coeff_file_names']:
-        with open(i, 'r') as coeff_file:
-            coeff_file_values = [filter(None, line.strip().split(' ')) for line in coeff_file]
-            coefficient_numbers = [coeff_file_values[i][0] for i in coeff_nums]
-            ax_temp = [coeff_file_values[i][1] for i in coeff_nums]
-            ay_temp = [coeff_file_values[i][4] for i in coeff_nums]
-            ax_tfloats = [np.float64(i) for i in ax_temp]
-            ay_tfloats = [np.float64(i) for i in ay_temp]
+        with open(i) as coeff_file:
+            coeff_file_list = pd.read_csv(coeff_file, header=None, delimiter=r"\s+")
+            print(coeff_file_list)
+            coefficient_numbers = [coeff_file_list[1][j] for j in coeff_nums]
+            ax_temp = [coeff_file_list[1][j] for j in coeff_nums] # NEED TO CHECK THIS AGAINST PREVIOUS METHOD
+            ay_temp = [coeff_file_list[4][j] for j in coeff_nums]
+            ax_tfloats = [np.float64(j) for j in ax_temp]
+            ay_tfloats = [np.float64(j) for j in ay_temp]
             ax.append(ax_tfloats)
             ay.append(ay_tfloats)
 
@@ -196,7 +197,7 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
 
     epsilon_deg_list = []
     ra_t_all = troll_output['ra_t']
-    for x in xrange(len(ra_t_all)):
+    for x in range(len(ra_t_all)):
         ra_t = ra_t_all[x]
         d_ra = (ra_t - ra_c)
         d_ra_rad = math.radians(d_ra)
@@ -215,7 +216,7 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
     eps = troll_output['eps']
     pav3corr = troll_output['pav3corr']
 
-    for x in xrange(len(orient_c)):
+    for x in range(len(orient_c)):
         epsilon_deg_now = epsilon_deg_list[x]
         theta_deg_now = (orient_c[x] - eps[x]) + epsilon_deg_now - pav3corr[x] # This is in degrees (not arcseconds).
         theta_rad = math.radians(theta_deg_now)
