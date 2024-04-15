@@ -30,7 +30,7 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     '''
     #pathname = '/grp/hst/wfc3o/martlin/idctab_vera/make_idctab_codes/'
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
     print("   ")

@@ -92,6 +92,8 @@ def make_idctab_main(filter_name, filename_list, path_to_data,path_to_coeff_file
     print( " ")
     print("RUNNING troll.py:")
     for i in extension_list:
+        print(screen_outputfile)
+        print(path_to_coeff_files)
         troll_main(filename_list, outfile_date, i, path_to_data,path_to_coeff_files,screen_outputfile)
         troll_outfile = 'troll_output_{}_{}.txt'.format(i,outfile_date)
         troll_outputs.append(troll_outfile)

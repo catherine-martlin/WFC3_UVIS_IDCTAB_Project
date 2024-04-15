@@ -33,7 +33,7 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     The main controller/conversion tool.
     '''
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
     #pathname = '/grp/hst/wfc3o/martlin/idctab_vera/make_idctab_codes/'

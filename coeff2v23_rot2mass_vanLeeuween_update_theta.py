@@ -90,7 +90,7 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
     The main controller/conversion tool.
     '''
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
     print("  ")
