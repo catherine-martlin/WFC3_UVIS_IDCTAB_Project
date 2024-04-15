@@ -47,10 +47,10 @@ def prep_files_for_readwf3poly(veracoeff_output, coeff2v23_output):
                 line = line.strip('\n')
                 list_of_values.append(line)
 
-    print list_of_values
+    print(list_of_values)
     for j in coeff2v23_output:
         list_of_values.remove(j)
-    print list_of_values
+    print(list_of_values)
 
     if 'vafactor' in i:
         outfile_name = 'veracoeff_combined_output_vafactor.txt'
@@ -58,7 +58,7 @@ def prep_files_for_readwf3poly(veracoeff_output, coeff2v23_output):
         outfile_name = 'veracoeff_combined_output.txt'
     f = open(outfile_name, 'w')
     for k in list_of_values:
-        print k
+        print(k)
         f.write(k + '\n')
     f.close()
 
@@ -100,20 +100,20 @@ def make_individual_idctab_main(filter_name, filename_list, path_to_data,path_to
 
         troll_outputs = []
         for i in extension_list:
-            print " "
-            print "RUNNING troll.py:"
+            print(" ")
+            print("RUNNING troll.py:")
             troll_main(j, outfile_date, i, path_to_data,path_to_coeff_files,screen_outputfile)
             troll_outfile = 'troll_output_{}_{}.txt'.format(i,outfile_date)
             troll_outputs.append(troll_outfile)
-            print troll_outfile
+            print(troll_outfile)
 
         uvis_names = ['uvis2','uvis1']
         uvis_troll = zip(troll_outputs,uvis_names)
 
         coeff2v23_output = []
         for i in uvis_troll:
-            print " "
-            print "RUNNING coeff2v23_rot2mass.py:"
+            print(" ")
+            print("RUNNING coeff2v23_rot2mass.py:")
             uvis = i[1]
             troll_output = i[0]
             coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis,filter_name,outfile_date,troll_output,path_to_coeff_files,screen_outputfile)
@@ -125,8 +125,8 @@ def make_individual_idctab_main(filter_name, filename_list, path_to_data,path_to
         veracoeff_output = []
         veracoeff_output_vafactor = []
         for i in chip_coeff2v23:
-            print " "
-            print "RUNNING veracoeff.py:"
+            print(" ")
+            print("RUNNING veracoeff.py:")
             chipnumber = i[0]
             infile = i[1]
             veracoeff_scaling_main(infile, chipnumber,outfile_date,screen_outputfile)
@@ -135,24 +135,24 @@ def make_individual_idctab_main(filter_name, filename_list, path_to_data,path_to
             outfile_veracoeff_vafactor = "veracoeff_output_vafactor_{}_{}.txt".format(detector,outfile_date)
             veracoeff_output.append(outfile_veracoeff)
             veracoeff_output_vafactor.append(outfile_veracoeff_vafactor)
-            print outfile_veracoeff
-            print outfile_veracoeff_vafactor
+            print(outfile_veracoeff)
+            print(outfile_veracoeff_vafactor)
 
         #Prep output of veracoeff for readwf3poly:
         combined_veracoeff_output = prep_files_for_readwf3poly(veracoeff_output, coeff2v23_output)
         combined_veracoeff_output_vafactor = prep_files_for_readwf3poly(veracoeff_output_vafactor, coeff2v23_output)
 
-        print " "
-        print "RUNNING readwf3poly_perfilter.py:"
+        print(" ")
+        print("RUNNING readwf3poly_perfilter.py:")
         readwf3poly_outfile = 'UVIS_IDC_{}_{}_vL.txt'.format(outfile_date,j)
         readwf3poly_outfile_vafactor = 'UVIS_IDC_vafactor_{}_{}_vL.txt'.format(outfile_date,j)
         readwf3poly_onefilter_main(combined_veracoeff_output,readwf3poly_outfile,screen_outputfile)
-        print combined_veracoeff_output
+        print(combined_veracoeff_output)
         readwf3poly_onefilter_main(combined_veracoeff_output_vafactor,readwf3poly_outfile_vafactor,screen_outputfile)
-        print combined_veracoeff_output_vafactor
+        print(combined_veracoeff_output_vafactor)
 
-    print " "
-    print "This IDCTAB was found using the VanLeeuween rotations and the old catalogue theta value."
+    print(" ")
+    print("This IDCTAB was found using the VanLeeuween rotations and the old catalogue theta value.")
 
 # -----------------------------------------------------------------------------
 # For command line execution

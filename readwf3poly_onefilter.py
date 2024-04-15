@@ -33,8 +33,8 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     out_f = file(screen_outputfile, 'a')
     sys.stdout = out_f
 
-    print "   "
-    print "RUNNING readwf3poly_onefilter.py:"
+    print("   ")
+    print("RUNNING readwf3poly_onefilter.py:")
 
     filenamepath = filename
     order = 4
@@ -82,26 +82,26 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
         new_b1.append(b1[y:z])
         new_b2.append(b2[y:z])
 
-    print 'A1'
+    print('A1')
     for x in xrange(0,order+1):
-        print new_a1[x]
-    print 'B1'
+        print(new_a1[x])
+    print('B1')
     for x in xrange(0,order+1):
-        print new_b1[x]
-    print 'A2'
+        print(new_b1[x])
+    print('A2')
     for x in xrange(0,order+1):
-        print new_a2[x]
-    print 'B2'
+        print(new_a2[x])
+    print('B2')
     for x in xrange(0,order+1):
-        print new_b2[x]
+        print(new_b2[x])
 
-    print ' '
-    print 'Reference points'
-    print a1[0], b1[0]
+    print(' ')
+    print('Reference points')
+    print(a1[0], b1[0])
     v21 = a1[0]
     v31 = b1[0]
 
-    print a2[0], b2[0]
+    print(a2[0], b2[0])
     v22 = a2[0]
     v32 = b2[0]
 
@@ -136,11 +136,11 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     betax2 = math.degrees(betax2_rad)
     betay2 = math.degrees(betay2_rad)
 
-    print ' '
-    print 'X-scale', 'Y-scale', 'Beta-X', 'Beta-y', 'Beta-y - Beta-x'
-    print x1scale, y1scale, betax1, betay1, (betay1-betax1)
-    print x2scale, y2scale, betax2, betay2, (betay2-betax2)
-    print ' '
+    print(' ')
+    print('X-scale', 'Y-scale', 'Beta-X', 'Beta-y', 'Beta-y - Beta-x')
+    print(x1scale, y1scale, betax1, betay1, (betay1-betax1))
+    print(x2scale, y2scale, betax2, betay2, (betay2-betax2))
+    print(' ')
 
     #Shift to known UVIS reference from alignment measurement from June 2012:
     uv2v2 = -27.4596
@@ -150,12 +150,12 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     v22 = uv2v2
     v32 = uv2v3
 
-    print 'New V-values', v21, v31, v22, v32
-    print ' '
-    print a1[0]
-    print a2[0]
-    print b1[0]
-    print b2[0]
+    print('New V-values', v21, v31, v22, v32)
+    print(' ')
+    print(a1[0])
+    print(a2[0])
+    print(b1[0])
+    print(b2[0])
 
     #IDC table output - Drizzle reference frame
     theta = 45.0
@@ -233,8 +233,8 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
         idctab_file.writelines([line1, line2_hardcode, line3_hardcode, line4, line5_hardcode, line6_hardcode])
 
 
-    print ' '
-    print 'Data appended to', idcfile
+    print(' ')
+    print('Data appended to', idcfile)
 
     sys.stdout = orig_stdout
     out_f.close()
