@@ -124,13 +124,15 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
     ay = []
     ax = []
     for i in troll_output['coeff_file_names']:
+        print(i)
         with open(i, 'r') as coeff_file:
-            coeff_file_values = [filter(None, line.strip().split(' ')) for line in coeff_file]
-            coefficient_numbers = [coeff_file_values[i][0] for i in coeff_nums]
-            ax_temp = [coeff_file_values[i][1] for i in coeff_nums]
-            ay_temp = [coeff_file_values[i][4] for i in coeff_nums]
-            ax_tfloats = [np.float64(i) for i in ax_temp]
-            ay_tfloats = [np.float64(i) for i in ay_temp]
+            print(coeff_file)
+            coeff_file_values = list(line.strip().split() for line in coeff_file)
+            coefficient_numbers = [coeff_file_values[num][0] for num in coeff_nums]
+            ax_temp = [coeff_file_values[num][1] for num in coeff_nums]
+            ay_temp = [coeff_file_values[num][4] for num in coeff_nums]
+            ax_tfloats = [np.float64(num) for num in ax_temp]
+            ay_tfloats = [np.float64(num) for num in ay_temp]
             ax.append(ax_tfloats)
             ay.append(ay_tfloats)
 
@@ -204,7 +206,7 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
 
     epsilon_deg_list = []
     ra_t_all = troll_output['ra_t']
-    for x in xrange(len(ra_t_all)):
+    for x in range(len(ra_t_all)):
         ra_t = ra_t_all[x]
         d_ra = (ra_t - ra_c)
         d_ra_rad = math.radians(d_ra)
@@ -228,7 +230,7 @@ def coeff2v23_rot2mass_vanLeeuween_update_theta_main(uvis, filter_name, outfile_
     #print(pav3corr[64])
   
 
-    for x in xrange(len(orient_c)):
+    for x in range(len(orient_c)):
         epsilon_deg_now = epsilon_deg_list[x]
         #print(x, " ", orient_c[x], " ", eps[x], " ",epsilon_deg_now, " ",pav3corr[x])
         theta_deg_now = (orient_c[x] - eps[x]) + epsilon_deg_now - pav3corr[x] # This is in degrees (not arcseconds).

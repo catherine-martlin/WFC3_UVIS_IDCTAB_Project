@@ -4,7 +4,6 @@ id1x04woq_flc.fits
 id1x04wsq_flc.fits
 id1x04wwq_flc.fits
 id1x04wzq_flc.fits
-id1x04x3q_flc.fits
 id1x04x7q_flc.fits
 id1x04xbq_flc.fits
 id1x04xfq_flc.fits

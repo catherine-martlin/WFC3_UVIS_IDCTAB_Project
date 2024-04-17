@@ -40,7 +40,7 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     chipfilepath = chipfile
 
     order = 4
-    terms = (order+1)*(order+2)/2
+    terms = int((order+1)*(order+2)/2)
 
     # Defining various matrices:
     x = []
@@ -74,7 +74,7 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     k = 0
     i_list = [0,1,1,2,2,2,3,3,3,3,4,4,4,4,4]
     j_list = [0,1,0,2,1,0,3,2,1,0,4,3,2,1,0]
-    for m in xrange(len(i_list)):
+    for m in range(len(i_list)):
         i = i_list[m]
         j = j_list[m]
         a[j,i] = x[k]
@@ -154,11 +154,12 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     name_info = str(chipfile), detector
 
     # Now reordering the scaled values:
+    print(terms)
     la = np.zeros(terms,np.float64)
     lb = np.zeros(terms,np.float64)
     k = 0
     j_list_2 = [0,0,1,0,1,2,0,1,2,3,0,1,2,3,4] # This list was made to match the indexing of the IDL code.
-    for x in xrange(len(i_list)):
+    for x in range(len(i_list)):
         i = i_list[k]
         j = j_list_2[k]
         la[k] = a_scaled[j,i]
@@ -173,7 +174,7 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     with open(outfile, 'w') as outputfile:
         file_info = str(chipfile) + '\n'
         outputfile.write(file_info)
-        for x in xrange(len(la)):
+        for x in range(len(la)):
             term_la = la[x]
             term_lb = lb[x]
             line = str(term_la) + ',' + str(term_lb) + '\n'
@@ -185,7 +186,7 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     lb_va = np.zeros(terms,np.float64)
     k = 0
     j_list_2 = [0,0,1,0,1,2,0,1,2,3,0,1,2,3,4] # This list was made to match the indexing of the IDL code.
-    for x in xrange(len(i_list)):
+    for x in range(len(i_list)):
         i = i_list[k]
         j = j_list_2[k]
         la_va[k] = a_va_scaled[j,i]
@@ -200,7 +201,7 @@ def veracoeff_scaling_main(chipfile, chipnumber,outfile_date,screen_outputfile):
     with open(outfile_va, 'w') as outputfile_va:
         file_info_va = str(chipfile) + '\n'
         outputfile_va.write(file_info_va)
-        for x in xrange(len(la_va)):
+        for x in range(len(la_va)):
             term_la_va = la_va[x]
             term_lb_va = lb_va[x]
             line_va = str(term_la_va) + ',' + str(term_lb_va) + '\n'
