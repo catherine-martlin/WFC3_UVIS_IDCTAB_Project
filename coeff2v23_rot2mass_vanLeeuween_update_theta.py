@@ -7,6 +7,11 @@ the mean of each coefficient which is used in the next step to making the
 IDCTAB. This code uses the Van Leeuween transformations at one point. We will
 also have a set that doesn't do that in order to test which may be better. (10/10/16)
 
+AUTHOR
+------
+
+Catherine Martlin, 2016, 2024. 
+
 NOTE
 ----
 Need a file in directory you are running the code that has name 'uvis1'

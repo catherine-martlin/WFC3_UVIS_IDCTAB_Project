@@ -2,7 +2,6 @@
 '''
 ABOUT:
 
-
 --filename_list - A list of the paths to the files in question.
 
 --path_to_data (Optional)- The directory path to the files.
@@ -10,6 +9,11 @@ ABOUT:
 -- outfile - Name of file the products are printed to.
 
 -- extension - UVIS chip to run on. Either 1 or 4 for UVIS 2 or 1.
+
+AUTHOR
+------
+
+Catherine Martlin 2016, 2024. 
 
 EXAMPLE RUN:
 

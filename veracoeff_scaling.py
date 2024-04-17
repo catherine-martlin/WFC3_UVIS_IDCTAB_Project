@@ -11,6 +11,11 @@ and it creates output that is used in the next step to making the IDCTAB.
 
 -- chipnumber - Chipnumber is either 1 or 2 for the UVIS chips or 3 for the IR.
 
+AUTHOR
+------
+
+Catherine Martlin 2016, 2024. 
+
 EXAMPLE
 -------
 

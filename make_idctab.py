@@ -8,7 +8,7 @@ subtasks of the IDCTAB creation algorithm.
 
 Author(s)
 ---------
-    Catherine Martlin, January 2017.
+    Catherine Martlin, January 2017, 2024.
 
 Use
 --- 

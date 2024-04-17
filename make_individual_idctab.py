@@ -7,7 +7,7 @@ other inputs and is a wrapper around several modules that perform
 subtasks of the IDCTAB creation algorithm.
 
 Author: 
-	Catherine Martlin, 2016.
+	Catherine Martlin, 2016, 2024.
 
 Use: python make_individual_idctab.py --filter_name='F606W' 
 --filename_list='f606w_oct_2016_flc_files_removed_mismatched_odd_file_removed.txt' 

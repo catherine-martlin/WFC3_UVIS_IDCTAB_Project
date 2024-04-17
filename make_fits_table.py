@@ -6,7 +6,7 @@ This script takes the output textfile of readwf3poly_onefilter and
 creates a FITs table from it that is the final IDCTAB FITs table.
 
 Author: 
-	Catherine Martlin, October 2016.
+	Catherine Martlin, October 2016, 2024.
 
 Use: 
 

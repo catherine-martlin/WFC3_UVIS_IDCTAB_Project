@@ -8,6 +8,11 @@ It reads in output from veracoeff.py and it creates the output IDC file.
 
 -- other variable?
 
+AUTHOR
+------
+
+Catherine Martlin 2016, 2024. 
+
 EXAMPLE
 -------
 
