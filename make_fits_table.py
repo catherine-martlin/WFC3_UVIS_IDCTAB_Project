@@ -30,7 +30,7 @@ def readfile(path, delim):
     
     lines =[]
     
-    with open(path, 'rb') as f:
+    with open(path, 'r') as f:
         reader = csv.reader(f, delimiter='\t')
         for row in reader:
             for line in row:
@@ -61,15 +61,15 @@ def make_fits_table_main(path, output_filename):
 
     # Now set the various values as the type they need to be: 
     chip1[0] = np.int16(chip1[0])
-    chip1[1] = np.str(chip1[1])
-    chip1[2] = np.str(chip1[2])
+    chip1[1] = str(chip1[1])
+    chip1[2] = str(chip1[2])
     chip1[3] = np.int32(chip1[3])
     chip1[4] = np.int32(chip1[4])
     chip1[5:39] = np.float32(chip1[5:39])
 
     chip2[0] = np.int16(chip2[0])
-    chip2[1] = np.str(chip2[1])
-    chip2[2] = np.str(chip2[2])
+    chip2[1] = str(chip2[1])
+    chip2[2] = str(chip2[2])
     chip2[3] = np.int32(chip2[3])
     chip2[4] = np.int32(chip2[4])
     chip2[5:39] = np.float32(chip2[5:39])
@@ -300,7 +300,7 @@ def make_fits_table_main(path, output_filename):
     prihdr['INSTRUME'] = 'WFC3 '
     prihdr['DETECTOR'] = 'UVIS '
     prihdr['FILETYPE'] = 'Distortion Coefficients'
-    prihdr['COMMENT'] = 'Created by C. Martlin, February, 2017'  
+    prihdr['COMMENT'] = 'Created by C. Martlin, February, 2024'
     prihdr['DESCRIP'] = 'Geometric Distortion Coefficients'
     prihdu = fits.PrimaryHDU(header=prihdr)
 
