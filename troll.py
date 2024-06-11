@@ -2,7 +2,6 @@
 '''
 ABOUT:
 
-
 --filename_list - A list of the paths to the files in question.
 
 --path_to_data (Optional)- The directory path to the files.
@@ -10,6 +9,11 @@ ABOUT:
 -- outfile - Name of file the products are printed to.
 
 -- extension - UVIS chip to run on. Either 1 or 4 for UVIS 2 or 1.
+
+AUTHOR
+------
+
+Catherine Martlin 2016, 2024. 
 
 EXAMPLE RUN:
 
@@ -86,6 +90,7 @@ def read_in_angle_stat(path, path_to_angle, extension):
     end = length - 7
     end2 = length - 9
     current_I = path[:end2]
+    print(current_I)
 
     name_list = []
     orientat_calc_list = []
@@ -96,10 +101,11 @@ def read_in_angle_stat(path, path_to_angle, extension):
     global EPS
 
     # Read in all the angle.stat info and match to the unique name.
-    print extension
+    print(extension)
     if extension == 1:
         with open(angle_file, 'r') as angle_stats_1:
             for line in angle_stats_1:
+                print(line)
                 curr_name = line[0:9]
                 extension_val = line[10:11]
                 curr_orientat = line[21:32]
@@ -108,8 +114,8 @@ def read_in_angle_stat(path, path_to_angle, extension):
                 orientat_calc_list.append(curr_orientat)
                 EPS_list.append(curr_EPS)
 
-            for x in xrange(len(name_list)):
-                if name_list[x] == current_I :
+            for x in range(len(name_list)):
+                if name_list[x] == current_I:
                     orientat_calc = orientat_calc_list[x]
                     EPS = EPS_list[x]
 
@@ -124,7 +130,7 @@ def read_in_angle_stat(path, path_to_angle, extension):
                 orientat_calc_list.append(curr_orientat)
                 EPS_list.append(curr_EPS)
 
-            for x in xrange(len(name_list)):
+            for x in range(len(name_list)):
                 if name_list[x] == current_I :
                     orientat_calc = orientat_calc_list[x]
                     EPS = EPS_list[x]
@@ -140,7 +146,7 @@ def troll_main(filename_list, outfile_date, extension, path_to_data,path_to_coef
     The main controller/conversion tool.
     '''
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
     with open(filename_list, 'r') as f:
@@ -148,8 +154,10 @@ def troll_main(filename_list, outfile_date, extension, path_to_data,path_to_coef
             path = path.rstrip()
             # Get the orientat_calc and EPS from the angle.stat:
             path_to_angle = path_to_coeffs
-            print path
             #path_to_angle = '/grp/hst/wfc3o/martlin/idctab_vera/make_idctab_codes/'
+            print(path)
+            print(path_to_angle)
+            print(extension)
             orientat_calc, EPS = read_in_angle_stat(path, path_to_angle, extension)
 
             # Read in the files and the values

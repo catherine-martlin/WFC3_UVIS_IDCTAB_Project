@@ -8,6 +8,11 @@ It reads in output from veracoeff.py and it creates the output IDC file.
 
 -- other variable?
 
+AUTHOR
+------
+
+Catherine Martlin 2016, 2024. 
+
 EXAMPLE
 -------
 
@@ -30,15 +35,15 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     '''
     #pathname = '/grp/hst/wfc3o/martlin/idctab_vera/make_idctab_codes/'
     orig_stdout = sys.stdout
-    out_f = file(screen_outputfile, 'a')
+    out_f = open(screen_outputfile, 'a')
     sys.stdout = out_f
 
-    print "   "
-    print "RUNNING readwf3poly_onefilter.py:"
+    print("   ")
+    print("RUNNING readwf3poly_onefilter.py:")
 
     filenamepath = filename
     order = 4
-    terms = (order+1)*(order+2)/2
+    terms = int((order+1)*(order+2)/2)
     a = []
     b = []
     a1 = []
@@ -49,11 +54,11 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
 
     nim = order + 1
 
-    nt = xrange(terms - 1)
+    nt = range(terms - 1)
 
 
     with open(filenamepath, 'r') as chipfile2:
-        for x in xrange(len(nt)):
+        for x in range(len(nt)):
             for line in chipfile2:
                 line = line.strip()
                 temp_val = line.split(',')
@@ -74,7 +79,7 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     list_1 = [0,1,3,6,10]
     list_2 = [1,3,6,10,15]
 
-    for x in xrange(0,order+1):
+    for x in range(0,order+1):
         y = list_1[x]
         z = list_2[x]
         new_a1.append(a1[y:z])
@@ -82,31 +87,31 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
         new_b1.append(b1[y:z])
         new_b2.append(b2[y:z])
 
-    print 'A1'
-    for x in xrange(0,order+1):
-        print new_a1[x]
-    print 'B1'
-    for x in xrange(0,order+1):
-        print new_b1[x]
-    print 'A2'
-    for x in xrange(0,order+1):
-        print new_a2[x]
-    print 'B2'
-    for x in xrange(0,order+1):
-        print new_b2[x]
+    print('A1')
+    for x in range(0,order+1):
+        print(new_a1[x])
+    print('B1')
+    for x in range(0,order+1):
+        print(new_b1[x])
+    print('A2')
+    for x in range(0,order+1):
+        print(new_a2[x])
+    print('B2')
+    for x in range(0,order+1):
+        print(new_b2[x])
 
-    print ' '
-    print 'Reference points'
-    print a1[0], b1[0]
+    print(' ')
+    print('Reference points')
+    print(a1[0], b1[0])
     v21 = a1[0]
     v31 = b1[0]
 
-    print a2[0], b2[0]
+    print(a2[0], b2[0])
     v22 = a2[0]
     v32 = b2[0]
 
     # Derived quantites:
-    for x in xrange(len(a1)):
+    for x in range(len(a1)):
         a1[x] = np.float64(a1[x])
         b1[x] = np.float64(b1[x])
         a2[x] = np.float64(a2[x])
@@ -136,11 +141,11 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     betax2 = math.degrees(betax2_rad)
     betay2 = math.degrees(betay2_rad)
 
-    print ' '
-    print 'X-scale', 'Y-scale', 'Beta-X', 'Beta-y', 'Beta-y - Beta-x'
-    print x1scale, y1scale, betax1, betay1, (betay1-betax1)
-    print x2scale, y2scale, betax2, betay2, (betay2-betax2)
-    print ' '
+    print(' ')
+    print('X-scale', 'Y-scale', 'Beta-X', 'Beta-y', 'Beta-y - Beta-x')
+    print(x1scale, y1scale, betax1, betay1, (betay1-betax1))
+    print(x2scale, y2scale, betax2, betay2, (betay2-betax2))
+    print(' ')
 
     #Shift to known UVIS reference from alignment measurement from June 2012:
     uv2v2 = -27.4596
@@ -150,12 +155,12 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     v22 = uv2v2
     v32 = uv2v3
 
-    print 'New V-values', v21, v31, v22, v32
-    print ' '
-    print a1[0]
-    print a2[0]
-    print b1[0]
-    print b2[0]
+    print('New V-values', v21, v31, v22, v32)
+    print(' ')
+    print(a1[0])
+    print(a2[0])
+    print(b1[0])
+    print(b2[0])
 
     #IDC table output - Drizzle reference frame
     theta = 45.0
@@ -165,7 +170,7 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     ad2 = []
     bd1 = []
     bd2 = []
-    for x in xrange(len(a1)):
+    for x in range(len(a1)):
         ad1.append((neg_a1[x] + b1[x])/math.sqrt(2.0))
         bd1.append((a1[x] + b1[x])/math.sqrt(2.0))
         ad2.append((neg_a2[x] + b2[x])/math.sqrt(2.0))
@@ -193,7 +198,7 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
     bd1_prec = []
     ad2_prec = []
     bd2_prec = []
-    for x in xrange(len(ad1)):
+    for x in range(len(ad1)):
         ad1_prec_t = '{:.7e}'.format(np.float64(ad1[x]))
         ad1_prec.append(np.float64(ad1_prec_t))
         bd1_prec_t = '{:.7e}'.format(np.float64(bd1[x]))
@@ -233,8 +238,8 @@ def readwf3poly_onefilter_main(filename,outfile_name,screen_outputfile):
         idctab_file.writelines([line1, line2_hardcode, line3_hardcode, line4, line5_hardcode, line6_hardcode])
 
 
-    print ' '
-    print 'Data appended to', idcfile
+    print(' ')
+    print('Data appended to', idcfile)
 
     sys.stdout = orig_stdout
     out_f.close()
